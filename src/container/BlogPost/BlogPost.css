@@ -38,3 +38,13 @@
   font-size: 16px;
   color: #4a4a4a;
 }
+.remove {
+  padding: 12px 18px;
+  background: red;
+  color: white;
+  border-radius: 10px;
+  outline: none;
+}
+.remove:hover {
+  cursor: pointer;
+}
