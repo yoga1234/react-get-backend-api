@@ -13,33 +13,47 @@ class BlogPost extends Component {
       body: ''
     }
   }
-  componentDidMount() {
-    this.getPostAPI()
-  }
-
+  
   getPostAPI = () => {
-    axios.get('http://localhost:3004/posts')
+    axios.get('http://localhost:3004/posts?_sort=id&_order=desc')
     .then((result) => {
       this.setState({
         post: result.data
       })
     })
   }
-
+  
   handleRemove = (data) => {
     axios.delete(`http://localhost:3004/posts/${data}`).then((res) => {
       this.getPostAPI()
     })
   }
-
+  
   handleFormChange = (e) => {
     let formBlogPostNew = {...this.state.formBlogPost}
+    let timeStamp = new Date().getTime();
     formBlogPostNew[e.target.name] = e.target.value
+    formBlogPostNew["id"] = timeStamp
     this.setState({
       formBlogPost: formBlogPostNew
-    }, () => {
-      console.log('formBlogPost', this.state.formBlogPost)
     })
+  }
+  
+  handleSubmit = () => {
+    this.postDataToAPI()
+  }
+  
+  postDataToAPI = () => {
+    axios.post(`http://localhost:3004/posts`, this.state.formBlogPost).then((res) => {
+      console.log(res);
+      this.getPostAPI();
+    }, (err) => {
+      console.log('err', err)
+    })
+  }
+  
+  componentDidMount() {
+    this.getPostAPI()
   }
 
   render() {
@@ -50,7 +64,7 @@ class BlogPost extends Component {
           <input type="text" name="title" placeholder="Add title here" onChange={this.handleFormChange}/>
           <label htmlFor="body">Blog Content</label>
           <textarea name="body" id="body" cols="30" rows="10" onChange={this.handleFormChange}></textarea>
-          <button className="btn-submit">Simpan</button>
+          <button onClick={this.handleSubmit} className="btn-submit">Simpan</button>
         </div>
         {
           this.state.post.map(post => {

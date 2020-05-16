@@ -82,4 +82,5 @@ button.btn-submit {
   color: #2196f3;
   text-transform: uppercase;
   font-weight: bold;
+  cursor: pointer;
 }
