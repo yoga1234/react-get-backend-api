@@ -45,7 +45,16 @@
   border-radius: 10px;
   outline: none;
 }
-.remove:hover {
+button.update {
+  padding: 12px 18px;
+  background: #88C34A;
+  color: white;
+  border-radius: 10px;
+  outline: none;
+  margin-top: 18px;
+  margin-right: 10px;
+}
+.remove:hover, button.update:hover {
   cursor: pointer;
 }
 .form-add-post {
