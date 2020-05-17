@@ -54,6 +54,15 @@ button.update {
   margin-top: 18px;
   margin-right: 10px;
 }
+button.detail {
+  padding: 12px 18px;
+  background: aquamarine;
+  color: black;
+  border-radius: 10px;
+  outline: none;
+  margin-top: 18px;
+  margin-right: 10px;
+}
 .remove:hover, button.update:hover {
   cursor: pointer;
 }
